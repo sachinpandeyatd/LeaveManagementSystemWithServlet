@@ -40,7 +40,7 @@ public class LeaveDetailsDAO {
 			leaveDetails.setLeaveEndDate(resultSet.getDate("leave_end_date"));
 			leaveDetails.setLeaveType(LeaveType.valueOf(resultSet.getString("leave_type").toString()));
 			leaveDetails.setLeaveStatus(LeaveStatus.valueOf(resultSet.getString("leave_status").toString()));
-			leaveDetails.setLeaveBalance(resultSet.getInt("EMP_AVAIL_LEAVE_BAL"));
+			leaveDetails.setNumberOfDays(resultSet.getInt("LEAVE_NO_OF_DAYS"));
 			leaveDetails.setLeaveReason(resultSet.getString("leave_reason"));
 			leaveDetails.setManagerComment(resultSet.getString("LEAVE_MNGR_COMMENTS"));
 		}
@@ -58,7 +58,7 @@ public class LeaveDetailsDAO {
 	    EmployDetails employDetails = searchEmployDAO(leaveDetails.getEmpNo());
 	    int leaveBalance = employDetails.getLeaveBalance();
 	    
-	    if (employDetails.getManagerId() < 0) {
+	    if (employDetails.getManagerId() == 0) {
 			leaveDetails.setLeaveStatus(LeaveStatus.APPROVED);
 		}else {
 			leaveDetails.setLeaveStatus(LeaveStatus.PENDING);

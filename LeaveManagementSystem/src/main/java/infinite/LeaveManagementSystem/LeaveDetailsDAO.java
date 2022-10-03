@@ -35,6 +35,7 @@ public class LeaveDetailsDAO {
 
 		if (resultSet.next()) {
 			leaveDetails = new LeaveDetails();
+			leaveDetails.setLeaveId(leaveId);
 			leaveDetails.setEmpNo(resultSet.getInt("emp_id"));
 			leaveDetails.setLeaveStartDate(resultSet.getDate("leave_start_date"));
 			leaveDetails.setLeaveEndDate(resultSet.getDate("leave_end_date"));
